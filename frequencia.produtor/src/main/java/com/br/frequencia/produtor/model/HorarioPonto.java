@@ -1,4 +1,4 @@
-package com.frequencia.produtor.frequencia.produtor.model;
+package com.br.frequencia.produtor.model;
 
 import jakarta.persistence.*;
 

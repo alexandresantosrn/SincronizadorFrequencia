@@ -1,10 +1,16 @@
-package com.frequencia.produtor.Frequencia.Produtor.model;
+package com.frequencia.produtor.frequencia.produtor.model;
+
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "horario_ponto")
 public class HorarioPonto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_horario_ponto;
     private long id_servidor;
     private LocalDateTime horario_entrada;

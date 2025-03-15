@@ -14,12 +14,12 @@ public class HorarioPonto {
     LocalDateTime entrada_real;
     LocalDateTime saida_real;
     LocalTime horas_trabalhadas;
-    LocalDateTime ultima_sinconizacao;
+    LocalDateTime ultima_sincronizacao;
 
     public HorarioPonto() {
     }
 
-    public HorarioPonto(long id_horario_ponto, long id_servidor, int id_unidade_registro, LocalDateTime entrada_informada, LocalDateTime saida_informada, LocalDateTime entrada_real, LocalDateTime saida_real, LocalTime horas_trabalhadas, LocalDateTime ultima_sinconizacao) {
+    public HorarioPonto(long id_horario_ponto, long id_servidor, int id_unidade_registro, LocalDateTime entrada_informada, LocalDateTime saida_informada, LocalDateTime entrada_real, LocalDateTime saida_real, LocalTime horas_trabalhadas, LocalDateTime ultima_sincronizacao) {
         this.id_horario_ponto = id_horario_ponto;
         this.id_servidor = id_servidor;
         this.id_unidade_registro = id_unidade_registro;
@@ -28,7 +28,7 @@ public class HorarioPonto {
         this.entrada_real = entrada_real;
         this.saida_real = saida_real;
         this.horas_trabalhadas = horas_trabalhadas;
-        this.ultima_sinconizacao = ultima_sinconizacao;
+        this.ultima_sincronizacao = ultima_sincronizacao;
     }
 
     public long getId_horario_ponto() {
@@ -95,12 +95,12 @@ public class HorarioPonto {
         this.horas_trabalhadas = horas_trabalhadas;
     }
 
-    public LocalDateTime getUltima_sinconizacao() {
-        return ultima_sinconizacao;
+    public LocalDateTime getUltima_sincronizacao() {
+        return ultima_sincronizacao;
     }
 
     public void setUltima_sinconizacao(LocalDateTime ultima_sinconizacao) {
-        this.ultima_sinconizacao = ultima_sinconizacao;
+        this.ultima_sincronizacao = ultima_sinconizacao;
     }
 
     @Override
@@ -114,7 +114,7 @@ public class HorarioPonto {
                 ", entrada_real=" + entrada_real +
                 ", saida_real=" + saida_real +
                 ", horas_trabalhadas=" + horas_trabalhadas +
-                ", ultima_sinconizacao=" + ultima_sinconizacao +
+                ", ultima_sinconizacao=" + ultima_sincronizacao +
                 '}';
     }
 
@@ -123,11 +123,11 @@ public class HorarioPonto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HorarioPonto that = (HorarioPonto) o;
-        return id_horario_ponto == that.id_horario_ponto && id_servidor == that.id_servidor && id_unidade_registro == that.id_unidade_registro && Objects.equals(entrada_informada, that.entrada_informada) && Objects.equals(saida_informada, that.saida_informada) && Objects.equals(entrada_real, that.entrada_real) && Objects.equals(saida_real, that.saida_real) && Objects.equals(horas_trabalhadas, that.horas_trabalhadas) && Objects.equals(ultima_sinconizacao, that.ultima_sinconizacao);
+        return id_horario_ponto == that.id_horario_ponto && id_servidor == that.id_servidor && id_unidade_registro == that.id_unidade_registro && Objects.equals(entrada_informada, that.entrada_informada) && Objects.equals(saida_informada, that.saida_informada) && Objects.equals(entrada_real, that.entrada_real) && Objects.equals(saida_real, that.saida_real) && Objects.equals(horas_trabalhadas, that.horas_trabalhadas) && Objects.equals(ultima_sincronizacao, that.ultima_sincronizacao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_horario_ponto, id_servidor, id_unidade_registro, entrada_informada, saida_informada, entrada_real, saida_real, horas_trabalhadas, ultima_sinconizacao);
+        return Objects.hash(id_horario_ponto, id_servidor, id_unidade_registro, entrada_informada, saida_informada, entrada_real, saida_real, horas_trabalhadas, ultima_sincronizacao);
     }
 }

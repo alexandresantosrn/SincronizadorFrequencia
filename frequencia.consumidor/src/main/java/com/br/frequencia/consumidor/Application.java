@@ -13,7 +13,7 @@ import java.util.List;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-	private HorarioPontoService horarioPontoService;
+	private final HorarioPontoService horarioPontoService;
 
 	public Application(HorarioPontoService horarioPontoService) {
 		this.horarioPontoService = horarioPontoService;

@@ -2,6 +2,7 @@ package com.br.frequencia.consumidor.service;
 
 import com.br.frequencia.consumidor.dto.HorarioPontoDTO;
 import com.br.frequencia.consumidor.model.HorarioPonto;
+import com.br.frequencia.consumidor.repository.QueriesRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -9,11 +10,11 @@ import java.util.List;
 
 @Service
 public class HorarioPontoService {
-    //private final HorarioPontoRepository horarioPontoRepository;
+    private final QueriesRepository queriesRepository;
 
-//    private HorarioPontoService(HorarioPontoRepository horarioPontoRepository) {
-//        this.horarioPontoRepository = horarioPontoRepository;
-//    }
+    public HorarioPontoService(QueriesRepository queriesRepository) {
+        this.queriesRepository = queriesRepository;
+    }
 
     public void popularFila(List<HorarioPontoDTO> horarioPontos) {
        for (HorarioPontoDTO horarioPontoDTO : horarioPontos) {
@@ -25,6 +26,7 @@ public class HorarioPontoService {
         HorarioPonto horarioPonto = new HorarioPonto();
         horarioPonto.setId_horario_ponto(horarioPontoDTO.getId_horario_ponto());
         horarioPonto.setId_servidor(horarioPontoDTO.getId_servidor());
+        horarioPonto.setId_unidade_registro(queriesRepository.buscarIdPorNome(horarioPontoDTO.getId_servidor()));
         horarioPonto.setUltima_sinconizacao(LocalDateTime.now());
     }
 }

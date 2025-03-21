@@ -1,6 +1,7 @@
 package com.br.frequencia.consumidor.service;
 
 import com.br.frequencia.consumidor.dto.HorarioPontoDTO;
+import com.br.frequencia.consumidor.helper.HorarioPontoHelper;
 import com.br.frequencia.consumidor.model.HorarioPonto;
 import com.br.frequencia.consumidor.repository.QueriesRepository;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public class HorarioPontoService {
         horarioPonto.setId_horario_ponto(horarioPontoDTO.getId_horario_ponto());
         horarioPonto.setId_servidor(horarioPontoDTO.getId_servidor());
         horarioPonto.setId_unidade_registro(queriesRepository.buscarIdPorNome(horarioPontoDTO.getId_servidor()));
+
+        if(horarioPontoDTO.getHorario_saida() != null) {
+            horarioPonto.setHoras_trabalhadas(HorarioPontoHelper.calculaHorasTrabalhadas(horarioPontoDTO.getHorario_entrada(), horarioPontoDTO.getHorario_saida()));
+        }
+
         horarioPonto.setUltima_sinconizacao(LocalDateTime.now());
     }
 }

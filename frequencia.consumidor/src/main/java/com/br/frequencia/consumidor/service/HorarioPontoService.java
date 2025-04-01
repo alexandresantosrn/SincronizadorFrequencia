@@ -29,6 +29,23 @@ public class HorarioPontoService {
         horarioPonto.setId_servidor(horarioPontoDTO.getId_servidor());
         horarioPonto.setId_unidade_registro(queriesRepository.buscarIdPorNome(horarioPontoDTO.getId_servidor()));
 
+        if (horarioPontoDTO.getHorario_entrada() != null) {
+            if(HorarioPontoHelper.hasDiferencadeDias(horarioPontoDTO.getHorario_entrada(), horarioPontoDTO.getHorario_saida())) {
+               horarioPonto.setEntrada_informada(horarioPontoDTO.getHorario_entrada());
+            } else {
+                horarioPonto.setEntrada_informada(horarioPontoDTO.getHorario_entrada());
+                horarioPonto.setSaida_informada(horarioPontoDTO.getHorario_saida());
+            }
+        }
+
+        if(horarioPontoDTO.getHorario_entrada() != null) {
+            horarioPonto.setEntrada_real(horarioPontoDTO.getHorario_entrada());
+        }
+
+        if(horarioPontoDTO.getHorario_saida() != null) {
+            horarioPonto.setSaida_real(horarioPontoDTO.getHorario_saida());
+        }
+
         if(horarioPontoDTO.getHorario_saida() != null) {
             horarioPonto.setHoras_trabalhadas(HorarioPontoHelper.calculaHorasTrabalhadas(horarioPontoDTO.getHorario_entrada(), horarioPontoDTO.getHorario_saida()));
         }

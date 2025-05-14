@@ -14,5 +14,4 @@ public class HorarioPontoHelper {
     public static boolean hasDiferencadeDias(LocalDateTime horarioEntrada, LocalDateTime horarioSaida) {
         return horarioEntrada.toLocalDate().isBefore(horarioSaida.toLocalDate());
     }
-
 }

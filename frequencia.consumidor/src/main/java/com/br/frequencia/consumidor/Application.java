@@ -30,6 +30,7 @@ public class Application implements CommandLineRunner {
 
 		HorarioPontoDTO[] horarioPontoArray = restTemplate.getForObject(url, HorarioPontoDTO[].class);
 
+		// Verifica se o array não é nulo antes de convertê-lo para uma lista
 		List<HorarioPontoDTO> horarioPontos = null;
 		if (horarioPontoArray != null) {
 			horarioPontos = List.of(horarioPontoArray);

@@ -11,18 +11,43 @@ import java.util.List;
 
 @Service
 public class HorarioPontoService {
+
+    /**
+     * Repositório para consultas ao banco de dados.
+     */
     private final QueriesRepository queriesRepository;
 
-    public HorarioPontoService(QueriesRepository queriesRepository) {
+    /**
+     * Lista de objetos HorarioPonto a serem processados.
+     */
+    private final List<HorarioPonto> filaHorarioPonto;
+
+    /**
+     * Construtor da classe HorarioPontoService.
+     * @param queriesRepository Repositório para consultas ao banco de dados.
+     * @param filaHorarioPonto Lista de objetos HorarioPonto a serem processados.
+     */
+    public HorarioPontoService(QueriesRepository queriesRepository, List<HorarioPonto> filaHorarioPonto) {
         this.queriesRepository = queriesRepository;
+        this.filaHorarioPonto = filaHorarioPonto;
     }
 
+    /**
+     * Método para popular a fila de horários com os dados recebidos.
+     * @param horarioPontos Lista de objetos DTO com os dados a serem extraídos.
+     */
     public void popularFila(List<HorarioPontoDTO> horarioPontos) {
-       for (HorarioPontoDTO horarioPontoDTO : horarioPontos) {
+        for (HorarioPontoDTO horarioPontoDTO : horarioPontos) {
            extrairCampos(horarioPontoDTO);
-       }
+        }
+
+        salvarHorarios(horarioPontos);
     }
 
+    /**
+     * Método para extrair os campos do DTO e criar um objeto HorarioPonto.
+     * @param horarioPontoDTO Objeto DTO com os dados a serem extraídos.
+     */
     private void extrairCampos(HorarioPontoDTO horarioPontoDTO) {
         HorarioPonto horarioPonto = new HorarioPonto();
         horarioPonto.setId_horario_ponto(horarioPontoDTO.getId_horario_ponto());
@@ -32,6 +57,7 @@ public class HorarioPontoService {
         if (horarioPontoDTO.getHorario_entrada() != null) {
             if(HorarioPontoHelper.hasDiferencadeDias(horarioPontoDTO.getHorario_entrada(), horarioPontoDTO.getHorario_saida())) {
                horarioPonto.setEntrada_informada(horarioPontoDTO.getHorario_entrada());
+
             } else {
                 horarioPonto.setEntrada_informada(horarioPontoDTO.getHorario_entrada());
                 horarioPonto.setSaida_informada(horarioPontoDTO.getHorario_saida());
@@ -51,5 +77,10 @@ public class HorarioPontoService {
         }
 
         horarioPonto.setUltima_sinconizacao(LocalDateTime.now());
+
+        filaHorarioPonto.add(horarioPonto);
+    }
+
+    private void salvarHorarios(List<HorarioPontoDTO> horarioPontos) {
     }
 }

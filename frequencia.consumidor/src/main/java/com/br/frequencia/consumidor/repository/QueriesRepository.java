@@ -24,7 +24,7 @@ public class QueriesRepository {
      * @param id_servidor
      * @return id_unidade
      */
-    public Integer buscarIdPorNome(Long id_servidor) {
+    public Integer buscarIdPorServidor(Long id_servidor) {
         String sql = "SELECT id_unidade FROM rh.servidor WHERE id_servidor = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, id_servidor);
     }

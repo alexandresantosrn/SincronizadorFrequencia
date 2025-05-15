@@ -52,7 +52,7 @@ public class HorarioPontoService {
         HorarioPonto horarioPonto = new HorarioPonto();
         horarioPonto.setId_horario_ponto(horarioPontoDTO.getId_horario_ponto());
         horarioPonto.setId_servidor(horarioPontoDTO.getId_servidor());
-        horarioPonto.setId_unidade_registro(queriesRepository.buscarIdPorNome(horarioPontoDTO.getId_servidor()));
+        horarioPonto.setId_unidade_registro(queriesRepository.buscarIdPorServidor(horarioPontoDTO.getId_servidor()));
 
         if (horarioPontoDTO.getHorario_entrada() != null) {
             if(HorarioPontoHelper.hasDiferencadeDias(horarioPontoDTO.getHorario_entrada(), horarioPontoDTO.getHorario_saida())) {
